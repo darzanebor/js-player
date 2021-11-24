@@ -6,102 +6,106 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     .video-container {
-	    height: auto;
+        height: auto;
         margin: 20px;
-	    width: 1366px;
+        width: 1366px;
         position: absolute;
     }
     .video-container video {        
         border: 1px solid black;
-	    object-fit: fill;
-	    z-index: 99;
-	    width: 1366px;
-	    height: 668px;
+        object-fit: fill;
+        z-index: 99;
+        width: 1366px;
+        height: 668px;
     }
     .video-list {
-		width: 100%;
+	width: 100%;
         display: flex;
         overflow-x: hidden;
         position: absolute;
     }
     .go-left {
-	  left: 0;
-	  bottom: 0;
-      width: 36px;
-      height: 100%;
-      position: absolute;
-      background: transparent;
-      z-index: 99;
-	}
-	.go-left:hover {
-      background-position: center;
-	  background-repeat: no-repeat;
-	  background-color:rgba(0, 0, 0, 0.7);
-	  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAxMTguMyAyMDAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDExOC4zIDIwMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBvbHlnb24gZmlsbD0iI2ZmZiIgaWQ9IlhNTElEXzdfIiBwb2ludHM9IjEwMCwyMDAgMCwxMDAgMTAwLDAgMTE4LjMsMTguMyAzNi43LDEwMCAxMTguMywxODEuNyAiLz4NCjwvc3ZnPg0K);
-	}
-    .go-right{	  
-	  right: 0;
-	  bottom: 0;
-      width: 36px;
-      z-index: 99;
-      height: 100%;
-      position: absolute;
-      background: transparent;
+        left: 0;
+        bottom: 0;
+        width: 36px;
+        height: 100%;
+        position: absolute;
+        background: transparent;
+        z-index: 99;
     }
-	.go-right:hover {
-      background-position: center;
-	  background-repeat: no-repeat;
-	  background-color:rgba(0, 0, 0, 0.7);
-	  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMy4wLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAxMTguMyAyMDAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDExOC4zIDIwMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBvbHlnb24gZmlsbD0iI2ZmZiIgcG9pbnRzPSIwLDE4MS43IDgxLjYsMTAwIDAsMTguMyAxOC4zLDAgMTE4LjMsMTAwIDE4LjMsMjAwICIvPg0KPC9zdmc+DQo=);
+    .go-left:hover {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color:rgba(0, 0, 0, 0.7);
+        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAxMTguMyAyMDAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDExOC4zIDIwMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBvbHlnb24gZmlsbD0iI2ZmZiIgaWQ9IlhNTElEXzdfIiBwb2ludHM9IjEwMCwyMDAgMCwxMDAgMTAwLDAgMTE4LjMsMTguMyAzNi43LDEwMCAxMTguMywxODEuNyAiLz4NCjwvc3ZnPg0K);
+    }
+    .go-right{	  
+        right: 0;
+        bottom: 0;
+        width: 36px;
+        z-index: 99;
+        height: 100%;
+        position: absolute;
+        background: transparent;
+    }
+    .go-right:hover {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color:rgba(0, 0, 0, 0.7);
+        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMy4wLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAxMTguMyAyMDAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDExOC4zIDIwMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBvbHlnb24gZmlsbD0iI2ZmZiIgcG9pbnRzPSIwLDE4MS43IDgxLjYsMTAwIDAsMTguMyAxOC4zLDAgMTE4LjMsMTAwIDE4LjMsMjAwICIvPg0KPC9zdmc+DQo=);
     }
     .change-video {	
-	  transform: translateX(0px); <!-- count elements on behalf of img size height * count + ? = shift-->
-	  margin: 6px;
-      cursor: pointer;
-      background: #BFE2FF;
-      border: 2px solid #BFE2FF;
-	  transition: box-shadow 0.3s linear;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.2);
+        transform: translateX(0px); <!-- count elements on behalf of img size height * count + ? = shift-->
+        margin: 6px;
+        cursor: pointer;
+        background: #BFE2FF;
+        border: 2px solid #BFE2FF;
+        transition: box-shadow 0.3s linear;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.2);
     }
     .change-video img {
-      width: 204px;
-      height: 113px;
+        width: 204px;
+        height: 113px;
     }
     .change-video span {
-      display: block;
-      padding: 4px 8px 0 8px;
-      font-size: 18px;
-      font-family: 'Roboto Condensed', sans-serif;
+        display: block;
+        padding: 4px 8px 0 8px;
+        font-size: 18px;
+        font-family: 'Roboto Condensed', sans-serif;
     }
     .change-video:hover {
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.2);
-      margin-top: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.2);
+        margin-top: 4px;
     }
     .change-video.active {
-      border: 6px solid #00b3ff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
-      color: #FFF;
-      background: #00b3ff;
+        border: 6px solid #00b3ff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
+        color: #FFF;
+        background: #00b3ff;
     }
-  </style>
-		
+  </style>	
   </head>
   <body>
   <div class="video-container">		  
     <video preload="none" id="player" poster="" controls></video>		    
-
     <div class="video-list">
-		<div class="go-left"></div> <!-- go left button -->
+        <div class="go-left"></div> <!-- go left button -->
         <div id="head" class="change-video  active" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://cdn.vox-cdn.com/thumbor/Qnd6z3ry89CES0r4LRh6KS9H5VA=/256x0:1792x1024/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/69493817/apple_foundation.0.0.jpeg">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
-        </div>
-        
+        </div>        
         <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
+        </div>        
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
+            <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
+            <span>Outback</span>
         </div>
-        
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
+            <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
+            <span>Outback</span>
+        </div>        
         <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
@@ -110,16 +114,6 @@
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
         </div>
-        
-        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
-            <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
-            <span>Outback</span>
-        </div>
-        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
-            <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
-            <span>Outback</span>
-        </div>
-        
         <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
@@ -127,7 +121,6 @@
         <div class="go-right"></div> <!-- go right button -->
     </div>
   </div>
-   
    <script>
     var video = document.querySelector('#player');
     var headsource = document.getElementById('head').getAttribute('data-video');
@@ -152,37 +145,38 @@
           hls.loadSource(videourl);
           hls.attachMedia(video);          
           hls.on(Hls.Events.MANIFEST_PARSED,function() {
-				  // video.play();
-		      });
+            // video.play();
+          });
       });
-      
+	    
     $('video').on('ended',function(){
       let nextvideo = $('.change-video.active').next(".change-video");
       let urlnextvideo = nextvideo.attr('data-video');
       let urlnextposter = nextvideo.attr('data-poster');
       if (urlnextvideo) {
-	    $(this).poster = urlnextposter;
+	$(this).poster = urlnextposter;
         hls.loadSource(urlnextvideo);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED,function() {
-		$('.change-video').removeClass('active');
-        nextvideo.addClass('active');
+	  $('.change-video').removeClass('active');
+          nextvideo.addClass('active');
           video.play();
-		});
-	  } else {
+	});
+      } else {
         video.stop();
-	  }
+      }
     });
+	    
     $(".go-left").hover(
       function(e){ console.log("over-left") }, // over
       function(e){ console.log("out-left") }  // out
     );
+	    
     $(".go-right").hover(
       function(e){ console.log("over-right") }, // over
       function(e){ console.log("out-right") }  // out
-      //.fadeOut( 100 );
     );
-     // var player = new Plyr(document.getElementById('#player'));
+
     });
    </script>
   </body>
