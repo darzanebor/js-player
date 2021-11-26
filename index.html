@@ -8,15 +8,12 @@
     .video-container {
         height: auto;
         margin: 20px;
-        width: 1366px;
         position: absolute;
     }
-    .video-container video {        
+    .video-container video {
+	z-index: 98;
         border: 1px solid black;
-        object-fit: fill;
-        z-index: 99;
-        width: 1366px;
-        height: 668px;
+        object-fit: contain;
     }
     .video-list {
 	width: 100%;
@@ -28,35 +25,38 @@
         left: 0;
         bottom: 0;
         width: 36px;
-        height: 100%;
-        position: absolute;
-        background: transparent;
         z-index: 99;
-    }
-    .go-left:hover {
+        height: 100%;
+        display: block;
+        position: absolute;
+        background-color: transparent;
         background-position: center;
         background-repeat: no-repeat;
-        background-color:rgba(0, 0, 0, 0.7);
+    }
+    .go-left:hover {
+        background-color: rgba(0, 0, 0, 0.7);
         background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAxMTguMyAyMDAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDExOC4zIDIwMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBvbHlnb24gZmlsbD0iI2ZmZiIgaWQ9IlhNTElEXzdfIiBwb2ludHM9IjEwMCwyMDAgMCwxMDAgMTAwLDAgMTE4LjMsMTguMyAzNi43LDEwMCAxMTguMywxODEuNyAiLz4NCjwvc3ZnPg0K);
     }
-    .go-right{	  
+    .go-right {
         right: 0;
         bottom: 0;
         width: 36px;
         z-index: 99;
         height: 100%;
+        display: block;
         position: absolute;
-        background: transparent;
-    }
-    .go-right:hover {
+        background-color: transparent;
         background-position: center;
         background-repeat: no-repeat;
-        background-color:rgba(0, 0, 0, 0.7);
+    }
+    .go-right:hover {
+        background-color: rgba(0, 0, 0, 0.7);
         background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMy4wLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAxMTguMyAyMDAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDExOC4zIDIwMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBvbHlnb24gZmlsbD0iI2ZmZiIgcG9pbnRzPSIwLDE4MS43IDgxLjYsMTAwIDAsMTguMyAxOC4zLDAgMTE4LjMsMTAwIDE4LjMsMjAwICIvPg0KPC9zdmc+DQo=);
     }
     .change-video {	
-        transform: translateX(0px); <!-- count elements on behalf of img size height * count + ? = shift-->
+        transform: translateX(0px);
         margin: 6px;
+        z-index: 97;
         cursor: pointer;
         background: #BFE2FF;
         border: 2px solid #BFE2FF;
@@ -69,16 +69,16 @@
     }
     .change-video span {
         display: block;
-        padding: 4px 8px 0 8px;
-        font-size: 18px;
+        padding: 0;
+        font-size: 12px;
         font-family: 'Roboto Condensed', sans-serif;
     }
     .change-video:hover {
         box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.2);
-        margin-top: 4px;
+        margin-top: 2px;
     }
     .change-video.active {
-        border: 6px solid #00b3ff;
+        border: 2px solid #00b3ff;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
         color: #FFF;
         background: #00b3ff;
@@ -87,54 +87,75 @@
   </head>
   <body>
   <div class="video-container">		  
-    <video preload="none" id="player" poster="" controls></video>		    
+    <video preload="auto" id="player" poster="" controls></video>		    
     <div class="video-list">
         <div class="go-left"></div> <!-- go left button -->
         <div id="head" class="change-video  active" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://cdn.vox-cdn.com/thumbor/Qnd6z3ry89CES0r4LRh6KS9H5VA=/256x0:1792x1024/1310x873/cdn.vox-cdn.com/uploads/chorus_image/image/69493817/apple_foundation.0.0.jpeg">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
         </div>        
-        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e02.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
         </div>        
-        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e03.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
         </div>
-        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e04.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
         </div>        
-        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e05.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
         </div>
-        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e06.m3u8" data-poster="https://thecinemaholic.com/wp-content/uploads/2021/09/FireShot-Capture-1577-Apple-Screeners-screeners.appletvplus.com_-e1632253222516.jpg">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
         </div>
-        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e01.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e07.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
             <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
             <span>Outback</span>
-        </div>        
+        </div>
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e08.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
+            <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
+            <span>Outback</span>
+        </div>
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e09.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
+            <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
+            <span>Outback</span>
+        </div>
+        <div id="head" class="change-video" data-video="http://localhost:5000/private/video/foundation.s01e10.m3u8" data-poster="https://bgr.com/wp-content/uploads/2021/07/foundation-apple-tv-trailer.jpg?resize=1440,810">
+            <img src="https://atuin.ru/demo/plyr/Outback.jpg" />
+            <span>Outback</span>
+        </div>
         <div class="go-right"></div> <!-- go right button -->
     </div>
   </div>
    <script>
-    var video = document.querySelector('#player');
-    var headsource = document.getElementById('head').getAttribute('data-video');
+
+    var playlistCount = $("div[id^=head]").length;
+    var playlistElemWidth = parseInt($('.change-video img').css('width').replace(/px/g, ''));
+    var playlistSize = playlistCount * playlistElemWidth - 2 * playlistElemWidth - 2 * playlistCount;    
+    var rightShiftMax = playlistSize/2*-1;
+    var video = document.querySelector('#player');    
+    var headsource = document.getElementById('head').getAttribute('data-video');    
+    
     if (Hls.isSupported()) {
  	  var hls = new Hls();
  	  video.poster = document.getElementById('head').getAttribute('data-poster');
  	  hls.loadSource(headsource);
  	  hls.attachMedia(video);
  	  hls.on(Hls.Events.MANIFEST_PARSED,function() {
- 		  // video.play();
-       });
+	    console.log("Init Done");
+	    // don't annoy with autoplay
+	    // video.play();
+      });
     } else {
  	  video.src=headsource;
     }
+    
     $(function() {
       $('.change-video').click(function(){
           $('.change-video').removeClass('active');
@@ -145,38 +166,48 @@
           hls.loadSource(videourl);
           hls.attachMedia(video);          
           hls.on(Hls.Events.MANIFEST_PARSED,function() {
-            // video.play();
+		      video.play();
           });
       });
 	    
-    $('video').on('ended',function(){
-      let nextvideo = $('.change-video.active').next(".change-video");
-      let urlnextvideo = nextvideo.attr('data-video');
-      let urlnextposter = nextvideo.attr('data-poster');
-      if (urlnextvideo) {
-	$(this).poster = urlnextposter;
-        hls.loadSource(urlnextvideo);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED,function() {
-	  $('.change-video').removeClass('active');
-          nextvideo.addClass('active');
-          video.play();
-	});
-      } else {
-        video.stop();
-      }
-    });
-	    
-    $(".go-left").hover(
-      function(e){ console.log("over-left") }, // over
-      function(e){ console.log("out-left") }  // out
-    );
-	    
-    $(".go-right").hover(
-      function(e){ console.log("over-right") }, // over
-      function(e){ console.log("out-right") }  // out
-    );
+      $('video').on('ended',function(){
+        let nextvideo = $('.change-video.active').next(".change-video");
+        let urlnextvideo = nextvideo.attr('data-video');
+        let urlnextposter = nextvideo.attr('data-poster');
+        if (urlnextvideo) {
+	  	  $(this).poster = urlnextposter;
+	  	  hls.loadSource(urlnextvideo);
+	  	  hls.attachMedia(video);
+	  	  hls.on(Hls.Events.MANIFEST_PARSED,function() {
+	  		  $('.change-video').removeClass('active');
+	  		  nextvideo.addClass('active');
+	  		  video.play();
+	  	  });
+        } else {
+          video.stop();
+        }
+      });
 
+      $('.go-left').click(function(){
+	    var currentShift = parseInt($('.change-video').css('transform').split(',')[4]);
+	    var newShift = currentShift + 50;
+        if (newShift > 0) {
+          newShift = 0;
+        }
+		$('.change-video').css('transform', 'translateX('+newShift+'px)');
+      });
+            
+      $('.go-right').click(function(){
+	    var currentShift = parseInt($('.change-video').css('transform').split(',')[4]);	    
+	    var point = currentShift - rightShiftMax;
+	    var newShift = null;
+	    if(point > playlistElemWidth){
+			newShift = currentShift - 50;
+		} else {
+			newShift = currentShift - point - playlistElemWidth/12;
+		}
+	    $('.change-video').css('transform', 'translateX('+newShift+'px)');
+      });
     });
    </script>
   </body>
