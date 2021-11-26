@@ -6,4 +6,5 @@
 ##### 
 <div align="center" width="90%">
   <img src="./img/example.png?raw=true" alt="js-player">
+  <img src="./img/example2.png?raw=true" alt="js-player">
 </div>
